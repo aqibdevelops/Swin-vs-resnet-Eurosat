@@ -29,6 +29,39 @@ def main():
     num_classes = len(class_names)
 
     # Model setup
+    if not os.path.exists(args.model_path):
+        print(f"Model file {args.model_path} not found locally.")
+        print("Attempting to download from WandB...")
+        try:
+            import wandb
+            run = wandb.init(project="eurosat-classification", job_type="inference")
+            
+            artifact_name = f"swin-eurosat:latest" if args.model_type == 'swin' else f"resnet50-eurosat:latest"
+            artifact = run.use_artifact(artifact_name)
+            artifact_dir = artifact.download()
+            
+            # The file name in the artifact might be different, but we uploaded it with the same name
+            # Let's assume the downloaded file has the same name as the one we uploaded
+            downloaded_file = os.path.join(artifact_dir, args.model_path)
+            
+            if os.path.exists(downloaded_file):
+                print(f"Model downloaded to {downloaded_file}")
+                args.model_path = downloaded_file # Update path to the downloaded file
+            else:
+                 # If the file name in artifact is different, try to find a .pth file
+                files = [f for f in os.listdir(artifact_dir) if f.endswith('.pth')]
+                if files:
+                    args.model_path = os.path.join(artifact_dir, files[0])
+                    print(f"Model found in artifact: {args.model_path}")
+                else:
+                    print("Error: Could not find .pth file in downloaded artifact.")
+                    return
+            
+        except Exception as e:
+            print(f"Error downloading model from WandB: {e}")
+            print("Please ensure you have wandb installed and logged in, or provide a valid local model path.")
+            return
+
     print(f"Loading {args.model_type} model from {args.model_path}...")
     if args.model_type == 'swin':
         model = timm.create_model('swin_tiny_patch4_window7_224', pretrained=False, num_classes=num_classes, img_size=128)
