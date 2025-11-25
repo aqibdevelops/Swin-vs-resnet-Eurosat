@@ -74,7 +74,7 @@ def main():
     parser = argparse.ArgumentParser(description='Train Swin Transformer on EuroSAT')
     parser.add_argument('--data_dir', type=str, default='data/eurosat/2750', help='Path to dataset')
     parser.add_argument('--warmup_epochs', type=int, default=5, help='Number of warmup epochs (head only)')
-    parser.add_argument('--finetune_epochs', type=int, default=40, help='Number of fine-tuning epochs')
+    parser.add_argument('--finetune_epochs', type=int, default=10, help='Number of fine-tuning epochs')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size')
     parser.add_argument('--lr', type=float, default=0.001, help='Learning rate')
     parser.add_argument('--dry-run', action='store_true', help='Run a single batch for debugging')

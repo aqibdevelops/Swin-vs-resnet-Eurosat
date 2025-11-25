@@ -2,6 +2,16 @@
 
 This project implements and compares **Swin Transformer (Tiny)** and **ResNet50** models for land use and land cover classification using the [EuroSAT dataset](https://github.com/phelber/eurosat).
 
+## Evaluation Results
+
+We evaluated both models on the EuroSAT dataset. The Swin Transformer (Tiny) demonstrates competitive performance compared to the ResNet50 baseline. The Swin transformer outperforms the ResNet50 model in terms of accuracy, with a final accuracy of 98.76% compared to 88.37% for the ResNet50 model.
+
+### Swin Transformer (Tiny)
+![Swin Transformer Evaluation](Swin%20eval.png)
+
+### ResNet50
+![ResNet50 Evaluation](RESNET50%20eval.png)
+
 ## Dataset
 The project uses the **EuroSAT** dataset, which consists of 27,000 labeled and georeferenced satellite images.
 - **Download**: [EuroSAT Dataset (RGB)](http://madm.dfki.de/files/sentinel/EuroSAT.zip)
@@ -19,7 +29,7 @@ The project uses the **EuroSAT** dataset, which consists of 27,000 labeled and g
     ```bash
     pip install torch torchvision timm tqdm wandb pillow
     ```
-    *(Note: For Apple Silicon (M1/M2/M3), ensure you install the MPS-enabled version of PyTorch)*
+    
 
 3.  **Weights & Biases (WandB)**:
     This project uses WandB for experiment tracking and model artifact storage.
