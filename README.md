@@ -1,3 +1,13 @@
+This project is submitted as a part of the course **Computer Vision** at **Tezpur University, Tezpur, Assam**. 
+
+## Submitted By
+
+- Aquib Alam
+- Roll No. CSD24020
+- M.Tech in Data Sciences, 3rd Semester
+- Tezpur University, Tezpur, Assam
+
+
 # Swin Transformer vs ResNet50 for EuroSAT Classification
 
 This project implements and compares **Swin Transformer (Tiny)** and **ResNet50** models for land use and land cover classification using the [EuroSAT dataset](https://github.com/phelber/eurosat).
